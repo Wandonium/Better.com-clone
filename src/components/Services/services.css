@@ -1,0 +1,74 @@
+.services {
+    margin-bottom: 100px;
+}
+
+#s-last {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.s-title {
+    text-align: center;
+    font-size: 40px;
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.service {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
+    padding: 30px 2px 20px 2px;
+}
+
+.service .grid {
+    cursor: pointer;
+}
+
+.s-right {
+    justify-self: flex-end;
+}
+
+.s-right .horiz {
+    width: 25px;
+    height: 4px;
+    position: relative;
+    top: 14px;
+    background-color: var(--primary-color);
+}
+
+.s-right .vert {
+    width: 4px;
+    height: 25px;
+    position: relative;
+    left: 12px;
+    background-color: var(--primary-color);
+}
+
+.s-left h1 {
+    font-family: var(--primary-font);
+    font-size: 60px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.s-left a{
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.s-left p {
+    /* display: none; */
+    font-family: var(--primary-font);
+    font-size: 16px;
+    line-height: 1.6;
+    width: 70%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.more-links p {
+    color: var(--primary-color);
+    margin-bottom: 70px;
+    font-size: 19px;
+}

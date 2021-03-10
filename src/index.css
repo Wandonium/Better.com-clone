@@ -1,13 +1,56 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("./fonts/Graphik-Regular/style.css");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+:root {
+  --primary-font: 'Graphik', sans-serif;
+  --secondary-font: 'Montserrat', sans-serif;
+  --primary-color: #281741;
+  --secondary-color: #00bf92;
+  --tertiary-color: #6f6f6f;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.end {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border-radius: 20px;
+  padding: 18px 60px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--primary-font);
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  /* overflow: auto; */
+  padding: 0 60px;
+}
+
+body {
+  transition: background-color .5s;
 }
