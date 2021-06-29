@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Front-End Practice - Web Page Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a clone of the [Better Mortgage](https://better.com/) landing page. The project was built to practice my Front-End web development skills by cloning a live web page from the internet and reproduce it as closely as I could. 
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+- [Author](#author)
 
-### `yarn start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a practice project for my Front-End web development skills. The task is to try and build a clone of an existing web page and get it as close to the original as I can. Here goes nothing ☺.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### The challenge
 
-### `yarn test`
+To reproduce the landing page of the website as closely as possible and implement all the UI designs from scratch if possible. Hence the tasks can be broken down into:
+- Inspecting the page and downloading any resources needed
+- Searching for any fonts and icons used on the page or any free alternatives on the internet
+- Making sure the colors and animations looks as close to and smooth as the original
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Screenshots
 
-### `yarn build`
+![](./screenshots/screenshot.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](./screenshots/screenshot1.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Links
 
-### `yarn eject`
+- Solution URL: [Solution on Github](https://github.com/Wandonium/Better.com-clone)
+- Live Site URL: [Live Site on Netlify](https://wandonium-mortgage.netlify.app/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## My process
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Break the web page into parts e.g. navbar, showcase (part with mobile phone card) etc. Then build each part as a React component each with it's own styling in a separate css file. Then combine all the parts into one web page. This way any component can be reused to make other web pages.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Built with
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- ReactJS
+- JSX: Html markup mixed in with javascript as per React Standards
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- ES6 Javascript syntax
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### What I learned
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+How to use custom fonts in React by including them in a fonts directory and importing them on the top most css file.
 
-### Code Splitting
+```css
+@import url("./fonts/Graphik-Regular/style.css");
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+How to use css variables to control things like colors and fonts for the entire app from one file in React.
 
-### Analyzing the Bundle Size
+```css
+:root {
+  --primary-font: 'Graphik', sans-serif;
+  --secondary-font: 'Montserrat', sans-serif;
+  --primary-color: #281741;
+  --secondary-color: #00bf92;
+  --tertiary-color: #6f6f6f;
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Author
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Website - [Hillary Wando](http://hillarywando.com/)
+- Codepen - [@Wandonium](https://codepen.io/wandonium)
+- Twitter - [@hillarywando](https://www.twitter.com/hillarywando)
