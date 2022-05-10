@@ -27,19 +27,20 @@ jobs:
           npm run build --if-present
 
       # zip build directory
-      #- name: Zip on Ubuntu
-        #uses: nguyenquyhy/zip-release@v0.3.0
-        #with:
+      - name: Zip on Ubuntu
+        uses: nguyenquyhy/zip-release@v0.3.0
+        with:
           # Filename for archive
-          #filename: release.zip
+          filename: release.zip
           # Base path for archive files
-          #path: ./build/* 
+          path: .
+          exclusions: node_modules
           
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -61,4 +62,4 @@ jobs:
           app-name: 'savannahinfo3'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EC01A8C930A9427D9CC5242E763D4FDB }}
-          package: . #release.zip
+          package: release.zip
