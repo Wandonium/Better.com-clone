@@ -58,3 +58,17 @@ li {
 body {
   transition: background-color .5s;
 }
+
+.move-up {
+  background-color: #E8EAE6;
+  border-radius: 10px;
+  margin-bottom: 8px !important;
+}
+
+.rotate-up {
+  transform: rotate(180deg);
+}
+
+.rotate-down {
+  transform: rotate(0deg);
+}
