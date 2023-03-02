@@ -72,3 +72,9 @@ body {
 .rotate-down {
   transform: rotate(0deg);
 }
+
+.my-btn:hover {
+  background-color: #017848 !important;
+  color: #fff;
+  border: 1px solid #017848 !important;
+}

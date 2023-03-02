@@ -83,7 +83,7 @@ export default function BasicMenu({ title, links }) {
                   placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
-              <Paper elevation={3}>
+              <Paper elevation={3} sx={{ minWidth: "250px" }}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     // autoFocusItem={open}
