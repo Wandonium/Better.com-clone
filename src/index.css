@@ -78,3 +78,7 @@ body {
   color: #fff;
   border: 1px solid #017848 !important;
 }
+
+.mobile-logo {
+  margin-left: 32px !important;
+}

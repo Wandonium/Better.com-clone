@@ -21,16 +21,16 @@ const Navbar = () => {
     {title: "HELOC", link: "https://better.com/preapproval/nxt-heloc"},
     {title: "Rates", link: "https://better.com/mortgage-rates/purchase"},
     {title: "Better+", link: "", menu: betterPlusMenu},
-    {title: "Home Search", link: "https://better.comehome.com/"},
-    {title: "Sign in", link: "https://better.comehome.com/"}
-  ];
+    {title: "Home Search", link: "https://better.comehome.com/"}
+];
 
   const links = linksArray.map((item, idx) => {
     if(item.link.length === 0) 
-      return <BasicMenu title={item.title} links={item.menu} />
+      return <BasicMenu key={item.link} title={item.title} links={item.menu} />
     else {
       return (
         <Link href={item.link}
+          key={item.link}
           underline="none" 
           color="inherit"
           variant="subtitle1"
@@ -38,6 +38,29 @@ const Navbar = () => {
       )
     }
   });
+
+  const button = (
+    <Button variant="outlined" href="https://google.com"
+      className="my-btn"
+      sx={{
+        color: "rgb(41, 43, 41)",
+        height: "48px",
+        fontSize: 16,
+        fontWeight: "bold",
+        borderRadius: 2,
+        px: "16px",
+        py: "0px",
+        maxWidth: "200px",
+        textTransform: 'none',
+        border: "1px solid rgb(164, 168, 164)",
+        transitionProperty: "background-color, color, box-shadow",
+        transitionDuration: "300ms",
+        transitionTimingFunction: "cubic-bezier(0.4, 0.8, 0.6, 1)"
+      }}
+    >
+      Get started
+    </Button>
+  );
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -49,16 +72,17 @@ const Navbar = () => {
 
   const list = () => (
     <Box
-      // sx={{ }}
+      sx={{ width: '80vw' }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
+      <Link href="#" className="mobile-logo" ><Logo /></Link>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text}>
-            <ListItemButton component="a" href="https://google.com">
-              <ListItemText primary={text} />
+        {linksArray.map((item, index) => (
+          <ListItem key={item.link}>
+            <ListItemButton component="a" href={item.link}>
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -98,24 +122,7 @@ const Navbar = () => {
             <Stack direction="row" justifyContent="space-between">
               <Stack direction="row" spacing={4} alignItems="center">
                 <Link href="#"><Logo /></Link>
-                {/* <BasicMenu title="Buy or Sell" links={buyOrSellMenu} />
-                <BasicMenu title="Refinance" links={refinanceMenu} />
-                <Link href="https://better.com/preapproval/nxt-heloc"
-                  underline="none" 
-                  color="inherit"
-                  variant="subtitle1"
-                >HELOC</Link>
-                <Link href="https://better.com/mortgage-rates/purchase"
-                  underline="none" 
-                  color="inherit"
-                  variant="subtitle1"
-                >Rates</Link>
-                <BasicMenu title="Better+" links={betterPlusMenu} />
-                <Link href="https://better.comehome.com/"
-                  underline="none" 
-                  color="inherit"
-                  variant="subtitle1"
-                >Home Search</Link>
+                {links}
               </Stack>
               <Stack direction="row" alignItems="center" sx={{ px: "27px" }}>
                 <Link href="https://better.comehome.com/"
@@ -123,9 +130,8 @@ const Navbar = () => {
                   color="inherit"
                   variant="subtitle1"
                   sx={{ mr: "48px" }}
-                >Sign in</Link> */}
-                {links}
-                <Button variant="outlined" href="https://google.com"
+                >Sign in</Link>
+                {/* <Button variant="outlined" href="https://google.com"
                   className="my-btn"
                   sx={{
                     color: "rgb(41, 43, 41)",
@@ -135,6 +141,7 @@ const Navbar = () => {
                     borderRadius: 2,
                     px: "16px",
                     py: "0px",
+                    maxWidth: "200px",
                     textTransform: 'none',
                     border: "1px solid rgb(164, 168, 164)",
                     transitionProperty: "background-color, color, box-shadow",
@@ -143,7 +150,8 @@ const Navbar = () => {
                   }}
                 >
                   Get started
-                </Button>
+                </Button> */}
+                {button}
               </Stack>
             </Stack>
           ) : (
@@ -151,7 +159,7 @@ const Navbar = () => {
               <Stack direction="row" alignItems="center">
                 <MenuIcon sx={{ mr: "12px" }} onClick={toggleDrawer(true)} />
                 <Drawer
-                  // anchor={anchor}
+                  anchor="left"
                   open={drawerOpen}
                   onClose={toggleDrawer(false)}
                 >
@@ -159,26 +167,7 @@ const Navbar = () => {
                 </Drawer>
                 <Link href="#"><Logo /></Link>
               </Stack>
-              <Button variant="outlined" href="https://google.com"
-                className="my-btn"
-                sx={{
-                  color: "rgb(41, 43, 41)",
-                  height: "48px",
-                  fontSize: 16,
-                  fontWeight: "bold",
-                  borderRadius: 2,
-                  px: "16px",
-                  py: "0px",
-                  maxWidth: "200px",
-                  textTransform: 'none',
-                  border: "1px solid rgb(164, 168, 164)",
-                  transitionProperty: "background-color, color, box-shadow",
-                  transitionDuration: "300ms",
-                  transitionTimingFunction: "cubic-bezier(0.4, 0.8, 0.6, 1)"
-                }}
-              >
-                Get started
-              </Button>
+              {button}
             </Stack>
           )
         }

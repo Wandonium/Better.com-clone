@@ -16,29 +16,16 @@ export default function BasicMenu({ title, links }) {
   const [rotate, setRotate] = useState(false);
   
   const open = Boolean(anchorEl);
+  
   const handleClick = (event) => {
     setRotate(true);
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setRotate(false);
     setAnchorEl(null);
   };
-
-  const arr = [
-    {
-        title: "Profile",
-        link: "https://google.com"
-    },
-    {
-        title: "My Account",
-        link: "https://bbc.com"
-    },
-    {
-        title: "Logout",
-        link: "https://cnn.com"
-    }
-  ];
 
   return (
     <div>
@@ -93,17 +80,17 @@ export default function BasicMenu({ title, links }) {
                   >
                     {
                         links.map((item, idx) => (
-                            <MenuItem key={idx} selected={false}>
-                                <Link 
-                                    href={item.link} 
-                                    underline="none" 
-                                    color="rgb(41, 43, 41)"
-                                    variant="subtitle1"
-                                    sx={{ px: "32px", py: "10px" }}
-                                >
-                                    {item.title}
-                                </Link>
-                            </MenuItem>
+                          <MenuItem key={idx} selected={false}>
+                            <Link 
+                              href={item.link} 
+                              underline="none" 
+                              color="rgb(41, 43, 41)"
+                              variant="subtitle1"
+                              sx={{ px: "32px", py: "10px" }}
+                            >
+                              {item.title}
+                            </Link>
+                          </MenuItem>
                         ))
                     }
                   </MenuList>
