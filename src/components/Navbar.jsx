@@ -15,7 +15,7 @@ import { buyOrSellMenu, refinanceMenu, betterPlusMenu } from '../utils/utils';
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const links = [
+  const linksArray = [
     {title: "Buy or Sell", link: "", menu: buyOrSellMenu},
     {title: "Refinance", link: "", menu: refinanceMenu},
     {title: "HELOC", link: "https://better.com/preapproval/nxt-heloc"},
@@ -25,7 +25,7 @@ const Navbar = () => {
     {title: "Sign in", link: "https://better.comehome.com/"}
   ];
 
-  const getLinks = links.map((item, idx) => {
+  const links = linksArray.map((item, idx) => {
     if(item.link.length === 0) 
       return <BasicMenu title={item.title} links={item.menu} />
     else {
@@ -98,7 +98,7 @@ const Navbar = () => {
             <Stack direction="row" justifyContent="space-between">
               <Stack direction="row" spacing={4} alignItems="center">
                 <Link href="#"><Logo /></Link>
-                <BasicMenu title="Buy or Sell" links={buyOrSellMenu} />
+                {/* <BasicMenu title="Buy or Sell" links={buyOrSellMenu} />
                 <BasicMenu title="Refinance" links={refinanceMenu} />
                 <Link href="https://better.com/preapproval/nxt-heloc"
                   underline="none" 
@@ -123,7 +123,8 @@ const Navbar = () => {
                   color="inherit"
                   variant="subtitle1"
                   sx={{ mr: "48px" }}
-                >Sign in</Link>
+                >Sign in</Link> */}
+                {links}
                 <Button variant="outlined" href="https://google.com"
                   className="my-btn"
                   sx={{
