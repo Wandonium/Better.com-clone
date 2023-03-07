@@ -4,24 +4,17 @@ import {
   Box, Button, useMediaQuery,
   List, ListItem, ListItemButton,
   ListItemText, Drawer, Divider,
-  Collapse, ListItemSecondaryAction
+  Collapse
 } from '@mui/material';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { ReactComponent as Logo } from '../logo.svg';
 
 import BasicMenu from './BasicMenu';
 import { buyOrSellMenu, refinanceMenu, betterPlusMenu } from '../utils/utils';
 
 const Navbar = () => {
-  const [linkOpen, setLinkOpen] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [rotate, setRotate] = useState(false);
-
-
   const linksArray = [
     {title: "Buy or Sell", link: "", menu: buyOrSellMenu},
     {title: "Refinance", link: "", menu: refinanceMenu},
@@ -29,7 +22,14 @@ const Navbar = () => {
     {title: "Rates", link: "https://better.com/mortgage-rates/purchase"},
     {title: "Better+", link: "", menu: betterPlusMenu},
     {title: "Home Search", link: "https://better.comehome.com/"}
-];
+  ];
+
+  const [openBuyOrSell, setOpenBuyOrSell] = useState(false);
+  const [openRefinance, setOpenRefinance] = useState(false);
+  const [openBetterPlus, setOpenBetterPlus] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // console.log("linkOpen2: ", linkOpen2);
 
   const links = linksArray.map((item, idx) => {
     if(item.link.length === 0) 
@@ -77,8 +77,14 @@ const Navbar = () => {
     setDrawerOpen(open);
   };
 
-  const toggleLink = () => {
-    setLinkOpen(!linkOpen);
+  const toggleLink = (idx) => {
+    console.log("idx: ", idx);
+    switch(idx) {
+      case 0: setOpenBuyOrSell(!openBuyOrSell);break;
+      case 1: setOpenRefinance(!openRefinance);break;
+      case 4: setOpenBetterPlus(!openBetterPlus); break;
+      default: console.error("toggleLink idx error! ⛔");
+    }
   };
 
   const list = () => (
@@ -90,7 +96,7 @@ const Navbar = () => {
     >
       <Link href="#" className="mobile-logo" ><Logo /></Link>
       <List>
-        {linksArray.map((item, index) => {
+        {linksArray.map((item, idx) => {
           if(item.link) {
             return (
               <ListItem key={item.link}>
@@ -107,9 +113,20 @@ const Navbar = () => {
               </ListItem>
             )
           } else {
+            let open;
+            switch(idx) {
+              case 0: open = openBuyOrSell;break;
+              case 1: open = openRefinance;break;
+              case 4: open = openBetterPlus;break;
+              default: open = false;
+            }
+
             return (
               <>
-                <ListItemButton onClick={toggleLink} sx={{ "&:hover": { bgcolor: "rgb(255, 253, 250)" } }}>
+                <ListItemButton 
+                  onClick={() => toggleLink(idx)}
+                  sx={{ "&:hover": { bgcolor: "rgb(255, 253, 250)" } }}
+                >
                   <ListItemText 
                     primary={item.title} 
                     primaryTypographyProps={{ fontSize: "18px" }} 
@@ -118,9 +135,9 @@ const Navbar = () => {
                   <ArrowDropDownIcon sx={{ 
                       fontSize: 28,
                       transition: "transform .3s" 
-                  }} className={linkOpen ? "rotate-up" : "rotate-down"} />
+                  }} className={open ? "rotate-up" : "rotate-down"} />
                 </ListItemButton>
-                <Collapse in={linkOpen} timeout="auto" unmountOnExit>
+                <Collapse in={open} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     {item.menu.map(mn => (
                       <ListItemButton sx={{ pl: 4 }} href={mn.link} key={mn.link}>
