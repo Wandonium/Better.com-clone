@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { 
   Stack, Avatar, Link, Typography, 
   Box, Button, useMediaQuery,
@@ -29,7 +29,6 @@ const Navbar = () => {
   const [openBetterPlus, setOpenBetterPlus] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // console.log("linkOpen2: ", linkOpen2);
 
   const links = linksArray.map((item, idx) => {
     if(item.link.length === 0) 
@@ -122,7 +121,7 @@ const Navbar = () => {
             }
 
             return (
-              <>
+              <Fragment key={idx}>
                 <ListItemButton 
                   onClick={() => toggleLink(idx)}
                   sx={{ "&:hover": { bgcolor: "rgb(255, 253, 250)" } }}
@@ -146,7 +145,7 @@ const Navbar = () => {
                     ))}
                   </List>
                 </Collapse>
-              </>
+              </Fragment>
             )
           }
         })}
