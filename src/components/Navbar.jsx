@@ -3,17 +3,24 @@ import {
   Stack, Avatar, Link, Typography, 
   Box, Button, useMediaQuery,
   List, ListItem, ListItemButton,
-  ListItemText, Drawer
+  ListItemText, Drawer, Divider,
+  Collapse, ListItemSecondaryAction
 } from '@mui/material';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { ReactComponent as Logo } from '../logo.svg';
 
 import BasicMenu from './BasicMenu';
 import { buyOrSellMenu, refinanceMenu, betterPlusMenu } from '../utils/utils';
 
 const Navbar = () => {
+  const [linkOpen, setLinkOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [rotate, setRotate] = useState(false);
+
 
   const linksArray = [
     {title: "Buy or Sell", link: "", menu: buyOrSellMenu},
@@ -70,23 +77,71 @@ const Navbar = () => {
     setDrawerOpen(open);
   };
 
+  const toggleLink = () => {
+    setLinkOpen(!linkOpen);
+  };
+
   const list = () => (
     <Box
-      sx={{ width: '80vw' }}
+      sx={{ width: '80vw', bgcolor: "rgb(255, 253, 250)" }}
       role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+      // onClick={toggleDrawer(false)}
+      // onKeyDown={toggleDrawer(false)}
     >
       <Link href="#" className="mobile-logo" ><Logo /></Link>
       <List>
-        {linksArray.map((item, index) => (
-          <ListItem key={item.link}>
-            <ListItemButton component="a" href={item.link}>
-              <ListItemText primary={item.title} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {linksArray.map((item, index) => {
+          if(item.link) {
+            return (
+              <ListItem key={item.link}>
+                <ListItemButton 
+                  component="a" 
+                  href={item.link} 
+                  sx={{ "&:hover": { bgcolor: "rgb(255, 253, 250)" }, py: 0 }}
+                >
+                  <ListItemText 
+                    primary={item.title} 
+                    primaryTypographyProps={{ fontSize: "18px" }} 
+                  />
+                </ListItemButton>
+              </ListItem>
+            )
+          } else {
+            return (
+              <>
+                <ListItemButton onClick={toggleLink} sx={{ "&:hover": { bgcolor: "rgb(255, 253, 250)" } }}>
+                  <ListItemText 
+                    primary={item.title} 
+                    primaryTypographyProps={{ fontSize: "18px" }} 
+                    sx={{ flex: "0 1 auto", pl: "16px" }} 
+                  />
+                  <ArrowDropDownIcon sx={{ 
+                      fontSize: 28,
+                      transition: "transform .3s" 
+                  }} className={linkOpen ? "rotate-up" : "rotate-down"} />
+                </ListItemButton>
+                <Collapse in={linkOpen} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {item.menu.map(mn => (
+                      <ListItemButton sx={{ pl: 4 }} href={mn.link} key={mn.link}>
+                        <ListItemText primary={mn.title} />
+                      </ListItemButton>
+                    ))}
+                  </List>
+                </Collapse>
+              </>
+            )
+          }
+        })}
       </List>
+      <Divider sx={{ mb: "24px" }} />
+      <Link href="https://better.comehome.com/"
+        underline="none" 
+        color="inherit"
+        variant="subtitle1"
+        sx={{ ml: "32px", fontSize: "18px" }}
+      >Sign in</Link>
+      <Box className="mobile-logo" sx={{ mt: 2 }}>{button}</Box>
     </Box>
   );
   
@@ -131,26 +186,6 @@ const Navbar = () => {
                   variant="subtitle1"
                   sx={{ mr: "48px" }}
                 >Sign in</Link>
-                {/* <Button variant="outlined" href="https://google.com"
-                  className="my-btn"
-                  sx={{
-                    color: "rgb(41, 43, 41)",
-                    height: "48px",
-                    fontSize: 16,
-                    fontWeight: "bold",
-                    borderRadius: 2,
-                    px: "16px",
-                    py: "0px",
-                    maxWidth: "200px",
-                    textTransform: 'none',
-                    border: "1px solid rgb(164, 168, 164)",
-                    transitionProperty: "background-color, color, box-shadow",
-                    transitionDuration: "300ms",
-                    transitionTimingFunction: "cubic-bezier(0.4, 0.8, 0.6, 1)"
-                  }}
-                >
-                  Get started
-                </Button> */}
                 {button}
               </Stack>
             </Stack>
